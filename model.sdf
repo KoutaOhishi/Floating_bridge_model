@@ -4,8 +4,11 @@
     <pose>0 0 0 0 0 0</pose>
     <static>false</static>
 
+    <!-- LINK -->
     <link name="body">
       <pose>0 0 0 0 0 0</pose>
+      <enable_wind>true</enable_wind>
+
       <collision name="body">
         <geometry>
           <box><size>8.0 12.0 1.0</size></box>
@@ -18,12 +21,12 @@
         </geometry>
 
         <material>
-          <diffuse>1 0 1 1</diffuse>
+          <diffuse>0 0.4 0 1</diffuse>
         </material>
       </visual>
 
       <inertial>
-        <mass> 500 </mass>
+        <mass> 1000 </mass>
       </inertial>
     </link>
 
@@ -45,6 +48,9 @@
             <length>12.0</length>
           </cylinder>
         </geometry>
+        <inertial>
+          <mass> 300 </mass>
+        </inertial>
       </visual>
     </link>
 
@@ -66,9 +72,138 @@
             <length>12.0</length>
           </cylinder>
         </geometry>
+        <inertial>
+          <mass> 300 </mass>
+        </inertial>
       </visual>
     </link>
 
+    <link name="center_line">
+      <pose>0 0 0.5 0 0 0</pose>
+
+      <collision name="center_line">
+        <geometry>
+          <box><size>0.1 11.9 0.1</size></box>
+        </geometry>
+      </collision>
+
+      <visual name="center_line">
+        <geometry>
+          <box><size>0.1 11.9 0.1</size></box>
+        </geometry>
+      </visual>
+    </link>
+
+    <link name="left_line">
+      <pose>-3.9 0 0.5 0 0 0</pose>
+
+      <collision name="left_line">
+        <geometry>
+          <box><size>0.1 11.9 0.1</size></box>
+        </geometry>
+      </collision>
+
+      <visual name="left_line">
+        <geometry>
+          <box><size>0.1 11.9 0.1</size></box>
+        </geometry>
+      </visual>
+    </link>
+
+    <link name="right_line">
+      <pose>3.9 0 0.5 0 0 0</pose>
+
+      <collision name="right_line">
+        <geometry>
+          <box><size>0.1 11.9 0.1</size></box>
+        </geometry>
+      </collision>
+
+      <visual name="right_line">
+        <geometry>
+          <box><size>0.1 11.9 0.1</size></box>
+        </geometry>
+      </visual>
+    </link>
+
+    <link name="front_line">
+      <pose>0 5.9 0.5 1.57 0 0</pose>
+
+      <collision name="front_line">
+        <geometry>
+          <box><size>7.9 0.1 0.1</size></box>
+        </geometry>
+      </collision>
+
+      <visual name="front_line">
+        <geometry>
+          <box><size>7.9 0.1 0.1</size></box>
+        </geometry>
+      </visual>
+    </link>
+
+    <link name="back_line">
+      <pose>0 -5.9 0.5 1.57 0 0</pose>
+
+      <collision name="back_line">
+        <geometry>
+          <box><size>7.9 0.1 0.1</size></box>
+        </geometry>
+      </collision>
+
+      <visual name="back_line">
+        <geometry>
+          <box><size>7.9 0.1 0.1</size></box>
+        </geometry>
+      </visual>
+    </link>
+
+    <!--<link name="propeller">
+      <pose>0 6 0 0 0 -1.57</pose>
+
+      <collision name="propeller">
+        <geometry>
+          <mesh>
+            <uri>model://floating_boat/mesh/PROPELLER.dae</uri>
+            <scale>10 10 10</scale>
+          </mesh>
+        </geometry>
+      </collision>
+
+      <surface>
+        <friction>
+          <ode>
+            <mu>1</mu>
+            <mu2>1</mu2>
+          </ode>
+        </friction>
+      </surface>
+
+      <visual name="propeller">
+        <geometry>
+          <mesh>
+            <uri>model://floating_boat/mesh/PROPELLER.dae</uri>
+            <scale>10 10 10</scale>
+          </mesh>
+
+          <material>
+            <diffuse>1 0 0 1</diffuse>
+          </material>
+        </geometry>
+
+        <inertial>
+          <mass> 100 </mass>
+          <inertia>
+            <ixx>33.3</ixx>
+            <iyy>33.3</iyy>
+            <izz>50</izz>
+          </inertia>
+        </inertial>
+      </visual>
+    </link> -->
+
+
+    <!-- JOINT -->
     <joint name="body2right_floater" type="fixed">
       <pose>0 0 0 0 0 0</pose>
       <parent>body</parent>
@@ -81,13 +216,50 @@
       <child>left_floater</child>
     </joint>
 
+    <joint name="body2center_line" type="fixed">
+      <pose>0 0 0 0 0 0</pose>
+      <parent>body</parent>
+      <child>center_line</child>
+    </joint>
+
+    <joint name="body2left_line" type="fixed">
+      <pose>0 0 0 0 0 0</pose>
+      <parent>body</parent>
+      <child>left_line</child>
+    </joint>
+
+    <joint name="body2right_line" type="fixed">
+      <pose>0 0 0 0 0 0</pose>
+      <parent>body</parent>
+      <child>right_line</child>
+    </joint>
+
+    <joint name="body2front_line" type="fixed">
+      <pose>0 0 0 0 0 0</pose>
+      <parent>body</parent>
+      <child>front_line</child>
+    </joint>
+
+    <joint name="body2back_line" type="fixed">
+      <pose>0 0 0 0 0 0</pose>
+      <parent>body</parent>
+      <child>back_line</child>
+    </joint>
+
+    <!--<joint name="body2propeller" type="revolute">
+      <pose>0 0 0 0 0 1.57</pose>
+      <parent>body</parent>
+      <child>propeller</child>
+    </joint>-->
+
+    <!-- PLUGIN -->
     <plugin name="BuoyancyPlugin" filename="libbuoyancy_gazebo_plugin.so">
       <fluid_density>1000</fluid_density>
       <fluid_level>0.0</fluid_level>
       <fluid_drag>5.0</fluid_drag>
       <link>
         <name>body</name>
-        <center_of_volume>0 6 1</center_of_volume>
+        <center_of_volume>0 5.5 1</center_of_volume>
         <area>0.63</area>
         <height>0.70</height>
       </link>
@@ -99,12 +271,35 @@
       <fluid_drag>5.0</fluid_drag>
       <link>
         <name>body</name>
-        <center_of_volume>0 -6 1</center_of_volume>
+        <center_of_volume>0 -5.5 1</center_of_volume>
         <area>0.63</area>
         <height>0.70</height>
       </link>
     </plugin>
 
+    <plugin name="BuoyancyPlugin" filename="libbuoyancy_gazebo_plugin.so">
+      <fluid_density>1000</fluid_density>
+      <fluid_level>0.0</fluid_level>
+      <fluid_drag>5.0</fluid_drag>
+      <link>
+        <name>body</name>
+        <center_of_volume>-3.5 0 1</center_of_volume>
+        <area>0.63</area>
+        <height>0.70</height>
+      </link>
+    </plugin>
+
+    <plugin name="BuoyancyPlugin" filename="libbuoyancy_gazebo_plugin.so">
+      <fluid_density>1000</fluid_density>
+      <fluid_level>0.0</fluid_level>
+      <fluid_drag>5.0</fluid_drag>
+      <link>
+        <name>body</name>
+        <center_of_volume>3.5 0 1</center_of_volume>
+        <area>0.63</area>
+        <height>0.70</height>
+      </link>
+    </plugin>
 
 
   </model>
