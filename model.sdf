@@ -1,0 +1,111 @@
+<?xml version='1.0'?>
+<sdf version='1.4'>
+  <model name="floating_boat">
+    <pose>0 0 3 0 0 0</pose>
+    <static>false</static>
+
+    <link name="body">
+      <pose>0 0 0 0 0 0</pose>
+      <collision name="body">
+        <geometry>
+          <box><size>8.0 12.0 1.0</size></box>
+        </geometry>
+      </collision>
+
+      <visual name="body">
+        <geometry>
+          <box><size>8.0 12.0 1.0</size></box>
+        </geometry>
+
+        <material>
+          <diffuse>1 0 1 1</diffuse>
+        </material>
+      </visual>
+
+      <inertial>
+        <mass> 10 </mass>
+      </inertial>
+    </link>
+
+    <link name="right_floater">
+      <pose>-3 0 -1 1.57 0 0</pose>
+      <collision name="right_floater">
+        <geometry>
+          <cylinder>
+            <radius>1.0</radius>
+            <length>12.0</length>
+          </cylinder>
+        </geometry>
+      </collision>
+
+      <visual name="right_floater">
+        <geometry>
+          <cylinder>
+            <radius>1.0</radius>
+            <length>12.0</length>
+          </cylinder>
+        </geometry>
+      </visual>
+    </link>
+
+    <link name="left_floater">
+      <pose>3 0 -1 1.57 0 0</pose>
+      <collision name="left_floater">
+        <geometry>
+          <cylinder>
+            <radius>1.0</radius>
+            <length>12.0</length>
+          </cylinder>
+        </geometry>
+      </collision>
+
+      <visual name="left_floater">
+        <geometry>
+          <cylinder>
+            <radius>1.0</radius>
+            <length>12.0</length>
+          </cylinder>
+        </geometry>
+      </visual>
+    </link>
+
+    <joint name="body2right_floater" type="fixed">
+      <pose>0 0 0 0 0 0</pose>
+      <parent>body</parent>
+      <child>right_floater</child>
+    </joint>
+
+    <joint name="body2left_floater" type="fixed">
+      <pose>0 0 0 0 0 0</pose>
+      <parent>body</parent>
+      <child>left_floater</child>
+    </joint>
+
+    <plugin name="BuoyancyPlugin" filename="libbuoyancy_gazebo_plugin.so">
+      <fluid_density>1000</fluid_density>
+      <fluid_level>0.0</fluid_level>
+      <fluid_drag>5.0</fluid_drag>
+      <link>
+        <name>body</name>
+        <center_of_volume>0 0 0.5</center_of_volume>
+        <area>0.63</area>
+        <height>0.70</height>
+      </link>
+    </plugin>
+
+    <plugin name="BuoyancyPlugin" filename="libbuoyancy_gazebo_plugin.so">
+      <fluid_density>1000</fluid_density>
+      <fluid_level>0.0</fluid_level>
+      <fluid_drag>5.0</fluid_drag>
+      <link>
+        <name>body</name>
+        <center_of_volume>0 0 0.5</center_of_volume>
+        <area>0.63</area>
+        <height>0.70</height>
+      </link>
+    </plugin>
+
+
+
+  </model>
+</sdf>
