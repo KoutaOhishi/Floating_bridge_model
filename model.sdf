@@ -1,7 +1,7 @@
 <?xml version='1.0'?>
 <sdf version='1.4'>
   <model name="floating_boat">
-    <pose>0 0 3 0 0 0</pose>
+    <pose>0 0 0 0 0 0</pose>
     <static>false</static>
 
     <link name="body">
@@ -23,7 +23,7 @@
       </visual>
 
       <inertial>
-        <mass> 10 </mass>
+        <mass> 500 </mass>
       </inertial>
     </link>
 
@@ -87,7 +87,7 @@
       <fluid_drag>5.0</fluid_drag>
       <link>
         <name>body</name>
-        <center_of_volume>0 0 0.5</center_of_volume>
+        <center_of_volume>0 6 1</center_of_volume>
         <area>0.63</area>
         <height>0.70</height>
       </link>
@@ -99,7 +99,7 @@
       <fluid_drag>5.0</fluid_drag>
       <link>
         <name>body</name>
-        <center_of_volume>0 0 0.5</center_of_volume>
+        <center_of_volume>0 -6 1</center_of_volume>
         <area>0.63</area>
         <height>0.70</height>
       </link>
