@@ -4,10 +4,11 @@
     <pose>0 0 0 0 0 0</pose>
     <static>false</static>
 
+
     <!-- LINK -->
     <link name="body">
       <pose>0 0 0 0 0 0</pose>
-      <enable_wind>true</enable_wind>
+      <wind>true</wind>
 
       <collision name="body">
         <geometry>
@@ -48,10 +49,12 @@
             <length>12.0</length>
           </cylinder>
         </geometry>
-        <inertial>
-          <mass> 300 </mass>
-        </inertial>
       </visual>
+
+      <inertial>
+        <mass> 30 </mass>
+      </inertial>
+
     </link>
 
     <link name="left_floater">
@@ -72,10 +75,10 @@
             <length>12.0</length>
           </cylinder>
         </geometry>
-        <inertial>
-          <mass> 300 </mass>
-        </inertial>
       </visual>
+      <inertial>
+        <mass> 30 </mass>
+      </inertial>
     </link>
 
     <link name="center_line">
@@ -300,7 +303,12 @@
         <height>0.70</height>
       </link>
     </plugin>
-
+	
+    <plugin name="WindPlugin" filename="libusv_gazebo_wind_plugin.so">
+	<bodyName>body</bodyName>
+	<wind_velocity_vector>10 0 0</wind_velocity_vector>
+	<wind_coeff_vector>0.5 0.5 0.33 </wind_coeff_vector>
+    </plugin>
 
   </model>
 </sdf>
